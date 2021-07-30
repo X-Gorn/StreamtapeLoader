@@ -180,9 +180,9 @@ async def loader(bot, update):
             img = Image.open(thumb)
             # https://stackoverflow.com/a/37631799/4723940
             # img.thumbnail((90, 90))
-            if AS_DOC == True:
+            if AS_DOC == 'True':
                 img.resize((320, height))
-            else:
+            elif AS_DOC == 'False':
                 img.resize((90, height))
             img.save(thumb, "JPEG")
         metadata = extractMetadata(createParser(dl_path))

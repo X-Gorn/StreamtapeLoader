@@ -32,7 +32,7 @@
       "value": "False"
     },
     "DEFAULT_THUMBNAIL": {
-      "description": "Default Thumbnail if can't found video thumbnail",
+      "description": "Default Thumbnail if bot can't find streamtape video thumbnail",
       "value": "https://telegra.ph/file/7adee9735e65353398942.jpg"
     }
   },

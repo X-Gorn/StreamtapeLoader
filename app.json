@@ -1,0 +1,51 @@
+{
+  "name": "StreamtapeLoader",
+  "description": "Telegram Bot to Upload Streamtape.com URL.",
+  "keywords": [
+    "telegram",
+    "best",
+    "streamtape",
+    "downloader"
+  ],
+  "success_url": "https://github.com/X-Gorn/StreamtapeLoader",
+  "website": "https://github.com/X-Gorn",
+  "repository": "https://github.com/X-Gorn/StreamtapeLoader",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your bot token, as a string.",
+      "value": ""
+    },
+    "APP_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+    "OWNER_ID": {
+      "description": "Your telegram id, not username. Open https://t.me/MissRose_bot and send /id to bot",
+      "value": ""
+    },
+    "AS_DOC": {
+      "description": "True: will upload as document | False: will upload as video",
+      "value": "False"
+    },
+    "DEFAULT_THUMBNAIL": {
+      "description": "Default Thumbnail if can't found video thumbnail",
+      "value": "https://telegra.ph/file/7adee9735e65353398942.jpg"
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [{
+    "url": "heroku/python"
+  }],
+  "stack": "heroku-20",
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}

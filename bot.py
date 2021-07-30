@@ -14,7 +14,7 @@ APP_ID = int(os.environ['APP_ID']) # Api id/App id
 BOT_TOKEN = os.environ['BOT_TOKEN'] # Bot token
 OWNER_ID = int(os.environ['OWNER_ID']) # Your telegram id
 AS_DOC = os.environ['AS_DOC'] # Upload method. If True: will send as document | If False: will send as video
-DEFAULT_THUMBNAIL = os.environ['DEFAULT_THUMBNAIL'] # Default thumbnail. only working if bot can't found the video thumbnail
+DEFAULT_THUMBNAIL = os.environ['DEFAULT_THUMBNAIL'] # Default thumbnail. Used if bot can't find streamtape video thumbnail
 
 # Buttons
 START_BUTTONS=[

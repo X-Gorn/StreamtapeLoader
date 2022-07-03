@@ -9,11 +9,11 @@ Telegram RoBot to Upload Streamtape URL.
 
 #### URL Examples
 
-`https://streamtape.com/v/{id}/{filename}` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3/%2540xvideoutilsbot_Kanojo_Mo_Kanojo_S1_03_720P_EngSub_%2540allanimewithsub.mp4)
+`https://streamtape.com|strtapeadblocker.xyz/v/{id}/{filename}` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3/%2540xvideoutilsbot_Kanojo_Mo_Kanojo_S1_03_720P_EngSub_%2540allanimewithsub.mp4)
 
-`https://streamtape.com/v/{id}/` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3/)
+`https://streamtape.com|strtapeadblocker.xyz/v/{id}/` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3/)
 
-`https://streamtape.com/v/{id}` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3)
+`https://streamtape.com|strtapeadblocker.xyz/v/{id}` [Link Example](https://streamtape.com/v/ZzXdOqgqB4Sq1l3)
 
 ## Telegram Support:
 

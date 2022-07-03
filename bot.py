@@ -28,12 +28,23 @@ START_BUTTONS=[
 # Helpers
 
 
+# later
 def streamtape_scrape(url):
     text = requests.get(url).text
     soup = bs4.BeautifulSoup(text, 'html.parser')
     norobotlink = soup.find(id='norobotlink')
     return norobotlink.text
 
+
+def scrape_poster(url):
+    s = requests.Session()
+    text = s.get(url).text
+    soup = bs4.BeautifulSoup(text, 'html.parser')
+    try:
+        mainvideo = soup.find('video', id='mainvideo')
+        return True, mainvideo['poster']
+    except:
+        return False, 'error'
 
 # https://github.com/SpEcHiDe/AnyDLBot
 async def progress_for_pyrogram(
@@ -168,12 +179,10 @@ async def loader(bot, update):
     result, dl_path = download_file(url, dirs)
     if result == True:
         import requests
-        r = requests.get(update.text)
-        if 'poster="' in r.text:
-            text = r.text.split('poster="')[1]
-            thumb_url = text.split('"')[0]
+        r, poster = scrape_poster(update.text)
+        if r:
             thumb = f'./downloads/thumb_{update.message_id}.jpg'
-            r = requests.get(thumb_url, allow_redirects=True)
+            r = requests.get(poster, allow_redirects=True)
             open(thumb, 'wb').write(r.content)
         else:
             thumb_url = DEFAULT_THUMBNAIL

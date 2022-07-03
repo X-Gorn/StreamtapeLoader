@@ -1,4 +1,4 @@
-import os, lk21, time, requests, math
+import os, lk21, time, requests, math, bs4
 from urllib.parse import unquote
 from pySmartDL import SmartDL
 from urllib.error import HTTPError
@@ -26,6 +26,14 @@ START_BUTTONS=[
 ]
 
 # Helpers
+
+
+def streamtape_scrape(url):
+    text = requests.get(url).text
+    soup = bs4.BeautifulSoup(text, 'html.parser')
+    norobotlink = soup.find(id='norobotlink')
+    return norobotlink.text
+
 
 # https://github.com/SpEcHiDe/AnyDLBot
 async def progress_for_pyrogram(
@@ -134,7 +142,11 @@ async def loader(bot, update):
     dirs = './downloads/'
     if not os.path.isdir(dirs):
         os.mkdir(dirs)
-    if not 'streamtape.com' in update.text:
+    if 'streamtape.com' in update.text:
+        pass
+    elif 'strtapeadblocker.xyz' in update.text:
+        pass
+    else:
         return
     link = update.text
     if '/' in link:
@@ -151,7 +163,7 @@ async def loader(bot, update):
     else:
         return
     bypasser = lk21.Bypass()
-    url = bypasser.bypass_url(link)
+    url = bypasser.bypass_streamtape(link)
     pablo = await update.reply_text('Downloading...', True)
     result, dl_path = download_file(url, dirs)
     if result == True:

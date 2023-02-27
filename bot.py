@@ -1,4 +1,4 @@
-import os, lk21, time, requests, math, bs4
+import os, lk21, time, requests, math, bs4, json
 from urllib.parse import unquote
 from pySmartDL import SmartDL
 from urllib.error import HTTPError
@@ -26,6 +26,54 @@ START_BUTTONS=[
 ]
 
 # Helpers
+
+# Get Login Key and Key from streamtape.com/api
+# Credit: https://github.com/DebXD/streamtape-scraper
+
+login_key = os.environ['LOGIN_KEY'] # api login
+key = os.environ['KEY'] # api password
+
+def get_ticket(file_id):
+    headers = {'file':file_id,'login':login_key,'key':key}
+    response = requests.get("https://api.strtape.tech/file/dlticket?",headers)
+    data = json.loads(response.text)
+    result = data.get('result')
+    return result
+
+def dl_url(ticket,file_id):
+    headers = {'file':file_id,'ticket':ticket,'login':login_key,'key':key}
+    response = requests.get("https://api.strtape.tech/file/dl?",headers)
+    data = json.loads(response.text)
+    result = data.get('result')
+    if result is not None:
+        link = result.get('url')
+        return link
+    else:
+        return "Not Found"
+
+def get_file_id(link):
+    lst = []
+    for i in link:
+        lst.append(i)
+
+    lst2 = lst[25:]
+
+    file_id = ""
+    for i in lst2:
+        if i == "/":
+            break;
+        else:
+            file_id += i
+    #print(file_id)
+    return file_id  
+
+def get_direct_streamtape(url):
+    file_id = get_file_id(url)
+    result = get_ticket(file_id)
+    ticket = result.get('ticket')
+    time.sleep(result.get('wait_time'))
+    link = dl_url(ticket,file_id)
+    return link
 
 
 # later
@@ -173,8 +221,7 @@ async def loader(bot, update):
             return
     else:
         return
-    bypasser = lk21.Bypass()
-    url = bypasser.bypass_streamtape(link)
+    url = get_direct_streamtape(link)
     pablo = await update.reply_text('Downloading...', True)
     result, dl_path = download_file(url, dirs)
     if result == True:

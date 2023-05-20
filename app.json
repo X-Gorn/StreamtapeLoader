@@ -42,10 +42,5 @@
     "url": "heroku/python"
   }],
   "stack": "heroku-20",
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "free"
-    }
-  }
+  
 }
